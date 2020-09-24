@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="css/general.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <style>
+            #buttons {
+                margin-top: 55px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div id="content">
+                <h1>Rust site - Register</h1>
+                <p>
+                    Register here.
+                </p>
+
+                <form action="http://127.0.0.1:8088/register" id="registration_form">
+                    <input type="text" name="username" placeholder="Username">
+                    <input type="email" name="email" placeholder="E-mail">
+                    <input type="date" name="birthdate" placeholder="Birthdate">
+                    <input type="password" name="password" placeholder="Password">
+                    <input type="password" name="rp_password" placeholder="Repeat Password">
+                    <input type="submit" name="btn_register" value="Register" class="btn">
+                </form>
+            </div>
+        </main>
+        <footer>
+
+        </footer>
+
+        <script>
+            $("#registration_form").submit(function(e) {
+                e.preventDefault();
+
+                let form = $(this);
+                let url = form.attr("action");
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: form.serialize(),
+                    success: function(response) {
+                        if (response == "ok") {
+                            window.location.replace("login.html");
+                        }
+                    }
+                });
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="css/general.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <style>
+            #buttons {
+                margin-top: 55px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div id="content">
+                <h1>Rust site - Login</h1>
+                <p>
+                    Login here.
+                </p>
+
+                <form action="http://127.0.0.1:8088/login" id="login_form">
+                    <input type="email" name="email" placeholder="E-mail">
+                    <input type="password" name="password" placeholder="Password">
+                    <input type="submit" name="btn_login" value="Login" class="btn">
+                </form>
+
+
+            </div>
+        </main>
+        <footer>
+
+        </footer>
+
+        <script>
+            $("#login_form").submit(function(e) {
+                e.preventDefault();
+
+                let form = $(this);
+                let url = form.attr("action");
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: form.serialize(),
+                    success: function(response) {
+                        if (response == "ok") {
+                            alert("Welcome");
+                        }
+                    }
+                });
+            })
+        </script>
+    </body>
+</html>
